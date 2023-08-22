@@ -48,7 +48,7 @@ class ConsoleApp:
             name_of_component = tree.get_name()
             price_of_component = tree.get_price()
             inserting_dict = {"name": name_of_component, "price": price_of_component, "type": "Product"}
-            dictionary["product"] = inserting_dict
+            dictionary.update(inserting_dict)
         elif type(tree) == Kit:
             name_of_component = tree.get_name()
             price_of_component = tree.get_price()

@@ -11,40 +11,30 @@
       "price": 77.0,
       "type": "Kit",
       "component_0": {
-        "product": {
-          "name": "Product H",
-          "price": 50.0,
-          "type": "Product"
-        }
+        "name": "Product H",
+        "price": 50.0,
+        "type": "Product"
       },
       "component_1": {
-        "product": {
-          "name": "Product K",
-          "price": 20.0,
-          "type": "Product"
-        }
+        "name": "Produkt K",
+        "price": 20.0,
+        "type": "Product"
       }
     },
     "component_1": {
-      "product": {
-        "name": "Product F",
-        "price": 5.0,
-        "type": "Product"
-      }
+      "name": "Product F",
+      "price": 5.0,
+      "type": "Product"
     },
     "component_2": {
-      "product": {
-        "name": "Product G",
-        "price": 15.0,
-        "type": "Product"
-      }
+      "name": "Product G",
+      "price": 15.0,
+      "type": "Product"
     }
   },
   "component_1": {
-    "product": {
-      "name": "Product C",
-      "price": 10.0,
-      "type": "Product"
-    }
+    "name": "Product C",
+    "price": 10.0,
+    "type": "Product"
   }
 }

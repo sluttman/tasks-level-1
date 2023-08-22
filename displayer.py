@@ -7,6 +7,8 @@ class TreeDisplayer:
         json_path = self.ask_for_json()
         json_tree = convert_json_to_dict(json_path)
         #component = self.ask_for_component()
+        os.system("clear") #TODO use cls when using a Windows
+        print(json_path + "\n")
         self.display_every_product_and_kit(json_tree, 0)
         #self.display_one_product_or_kit(json_tree)
         pass
@@ -26,7 +28,7 @@ class TreeDisplayer:
         self.display_one_product_or_kit(json_tree, indentation)
         for key in json_tree:
             if key not in ["name", "price", "type"]:
-                
+
                 self.display_every_product_and_kit(json_tree[key], indentation + 1)
         pass
     # def ask_for_component(self):
@@ -49,6 +51,6 @@ class TreeDisplayer:
     def display_one_product_or_kit(self, json_tree, indentation):
         indent = ""
         for i in range(0,indentation):
-            indent = indent + "    "
-        print(f"""{indent}{json_tree.get("name")}, Price: {json_tree.get("price")}, Type: {json_tree.get("type")}""")
+            indent = indent + "         "
+        print(f"""{indent}{json_tree.get("name")}, Price: {json_tree.get("price")}, Type: {json_tree.get("type")}\n""")
         

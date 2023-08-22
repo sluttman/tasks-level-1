@@ -1,0 +1,24 @@
+{
+  "name": "afe\u00f6ljefwkj",
+  "price": 5.72,
+  "type": "Kit",
+  "component_0": {
+    "product": {
+      "name": "afef\u00f6ejlfew",
+      "price": 3.0,
+      "type": "Product"
+    }
+  },
+  "component_1": {
+    "name": "adolfonso",
+    "price": 2.2,
+    "type": "Kit",
+    "component_0": {
+      "product": {
+        "name": "Adolso",
+        "price": 2.0,
+        "type": "Product"
+      }
+    }
+  }
+}

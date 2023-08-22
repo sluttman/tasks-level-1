@@ -1,0 +1,21 @@
+{
+  "product_tree": {
+    "name": "Barbella",
+    "price": 111.1,
+    "type": "Kit",
+    "component_0": {
+      "product_tree": {
+        "name": "Weight",
+        "price": 99.0,
+        "type": "Product"
+      }
+    },
+    "component_1": {
+      "product_tree": {
+        "name": "Barbell",
+        "price": 2.0,
+        "type": "Product"
+      }
+    }
+  }
+}

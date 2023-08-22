@@ -1,0 +1,21 @@
+{
+  "product_tree": {
+    "name": "Dumbell",
+    "price": 12.1,
+    "type": "Kit",
+    "component_0": {
+      "product_tree": {
+        "name": "Barbell",
+        "price": 9.0,
+        "type": "Product"
+      }
+    },
+    "component_1": {
+      "product_tree": {
+        "name": "Weight",
+        "price": 2.0,
+        "type": "Product"
+      }
+    }
+  }
+}

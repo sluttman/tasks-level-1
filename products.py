@@ -10,6 +10,8 @@ class superProduct:
         return price
     def get_price(self):
         return self.price
+    def get_name(self):
+        return self.name
     
     
     
@@ -29,6 +31,9 @@ class Kit(superProduct):
 
     def set_components(self, components):
         return components
+    
+    def get_components(self):
+        return self.child_components
     
     def get_price_of_components(self):
         price_of_components = 0

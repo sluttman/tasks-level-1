@@ -1,5 +1,6 @@
 from products import *
 from json_utils import insert_json_into_file
+from displayer import *
 
 class ConsoleApp:
     def __init__(self):
@@ -38,7 +39,7 @@ class ConsoleApp:
     def display_product_tree(self):
         print("displaying product tree")
         displayer = TreeDisplayer()
-        displayer.display 
+        displayer.display() 
 
     def create_dictionary(self, tree):
         dictionary = {}

@@ -2,6 +2,8 @@ from products import *
 from json_utils import insert_json_into_file
 from displayer import *
 import os
+
+
 class ConsoleApp:
     def __init__(self):
         self.dictionary_for_json_conversion = {}
@@ -18,32 +20,33 @@ class ConsoleApp:
             elif user_decision == "end":
                 running_app = False
                 print("Bye Bye")
-            
-        
 
     def get_user_input(self):
         invalid_response = True
         while invalid_response:
-            user_decision = input("Please tell me wether you want to add a product tree manually, display the data or end the program! (add/display/end)\n")
-            if user_decision.lower() in ["add", "display","end"]:
+            user_decision = input(
+                "Please tell me wether you want to add a product tree manually, display the data or end the program! (add/display/end)\n"
+            )
+            if user_decision.lower() in ["add", "display", "end"]:
                 invalid_response = False
             else:
                 print("Please write either add or display")
         return user_decision
-        
 
     def create_product_tree(self):
         creater = TreeCreater()
         tree = creater.create_manually()
         self.dictionary_for_json_conversion = self.create_dictionary(tree)
-        filename = input("How would you like to call the file that the product tree will be stored in? \n (Beware that if the name already excists the old data will be overriden!)\n")
+        filename = input(
+            "How would you like to call the file that the product tree will be stored in? \n (Beware that if the name already excists the old data will be overriden!)\n"
+        )
         insert_json_into_file(self.dictionary_for_json_conversion, filename)
         print(self.dictionary_for_json_conversion)
         pass
 
     def display_product_tree(self):
         displayer = TreeDisplayer()
-        displayer.display() 
+        displayer.display()
 
     def create_dictionary(self, tree):
         dictionary = {}
@@ -51,22 +54,29 @@ class ConsoleApp:
         if type(tree) == Product:
             name_of_component = tree.get_name()
             price_of_component = tree.get_price()
-            inserting_dict = {"name": name_of_component, "price": price_of_component, "type": "Product"}
+            inserting_dict = {
+                "name": name_of_component,
+                "price": price_of_component,
+                "type": "Product",
+            }
             dictionary.update(inserting_dict)
         elif type(tree) == Kit:
             name_of_component = tree.get_name()
             price_of_component = tree.get_price()
-            inserting_dict = {"name": name_of_component, "price": price_of_component, "type": "Kit"}
-            #dictionary["product_tree"] = inserting_dict
+            inserting_dict = {
+                "name": name_of_component,
+                "price": price_of_component,
+                "type": "Kit",
+            }
+            # dictionary["product_tree"] = inserting_dict
             components = tree.get_components()
-            for i in range(0,len(components)):
+            for i in range(0, len(components)):
                 child_dictionary = self.create_dictionary(components[i])
                 components_number = f"component_{str(i)}"
                 inserting_dict[components_number] = child_dictionary
             dictionary.update(inserting_dict)
-        
+
         return dictionary
-    
 
     def validation_check(self):
         pass
@@ -77,65 +87,73 @@ class TreeCreater:
         self.name_of_product = ""
         self.validation_list = []
 
-
     def create_manually(self):
         self.name_of_product = self.ask_for_name_of_product()
         number_of_child_products = self.ask_for_number_of_child_products()
 
         if number_of_child_products == 0:
-            price_of_product = self.ask_for_price_of_product()  #float
-            product = Product(price=price_of_product, name= self.name_of_product)
+            price_of_product = self.ask_for_price_of_product()  # float
+            product = Product(price=price_of_product, name=self.name_of_product)
             return product
-        
-        else:
-            list_of_components_of_kit =[]
 
-            for number_child_product in range(0,number_of_child_products):
-                print(f"Child Component Number {str(number_child_product + 1)} of {self.name_of_product}!")
+        else:
+            list_of_components_of_kit = []
+
+            for number_child_product in range(0, number_of_child_products):
+                print(
+                    f"Child Component Number {str(number_child_product + 1)} of {self.name_of_product}!"
+                )
                 child_product = TreeCreater()
-                child_product.set_list(self.validation_list)                          
+                child_product.set_list(self.validation_list)
                 list_of_components_of_kit.append(child_product.create_manually())
-            kit = Kit(components= list_of_components_of_kit, name=self.name_of_product)
+            kit = Kit(components=list_of_components_of_kit, name=self.name_of_product)
             return kit
-        
+
     def set_list(self, validation_list):
         self.validation_list = list(validation_list)
 
     def ask_for_name_of_product(self):
-        user_decision = input("What is the Name of the Product/Kit you want to create?\n")
+        user_decision = input(
+            "What is the Name of the Product/Kit you want to create?\n"
+        )
         if user_decision in self.validation_list:
-            raise ValueError("The tree you tried to create contains a circular reference and can't be created!")
+            raise ValueError(
+                "The tree you tried to create contains a circular reference and can't be created!"
+            )
         self.validation_list.append(user_decision)
         return user_decision
 
     def ask_for_number_of_child_products(self):
         invalid_response = True
         while invalid_response:
-            user_decision = input(f"How many components does your {self.name_of_product} consist of? (e.g. 0 or 3)\n")
+            user_decision = input(
+                f"How many components does your {self.name_of_product} consist of? (e.g. 0 or 3)\n"
+            )
             if self.is_whole_number(user_decision):
                 invalid_response = False
             else:
                 print("Please write only a number")
         return int(user_decision)
-    
+
     def ask_for_price_of_product(self):
         invalid_response = True
         while invalid_response:
-            user_decision = input(f"How much does {self.name_of_product} cost in €? (e.g. 100.33 or 32)")
+            user_decision = input(
+                f"How much does {self.name_of_product} cost in €? (e.g. 100.33 or 32)"
+            )
             if self.is_number(user_decision):
                 invalid_response = False
             else:
                 print("Please write only a number")
         return float(user_decision)
-    
-    
+
     def is_whole_number(self, value):
         try:
             int_value = int(value)
             return isinstance(int_value, int)
         except ValueError:
             return False
-        
+
     def is_number(self, value):
         try:
             int_value = float(value)
@@ -143,8 +161,7 @@ class TreeCreater:
         except ValueError:
             return False
 
+
 if __name__ == "__main__":
     app = ConsoleApp()
     app.run_app()
-
-

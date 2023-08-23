@@ -1,6 +1,7 @@
 from employee import *
-class company:
 
+
+class company:
     def __init__(self):
         self.employees = []
         self.backoffice_employees = []
@@ -19,7 +20,7 @@ class company:
 
     def get_employees(self):
         return self.employees
-    
+
     def add_case_into_queue(self, case):
         self.case_queue.append(case)
         print("added case to queue")

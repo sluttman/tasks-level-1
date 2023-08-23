@@ -1,7 +1,7 @@
 from products import *
 from json_utils import insert_json_into_file
 from displayer import *
-import os
+
 
 
 class ConsoleApp:

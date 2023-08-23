@@ -10,7 +10,7 @@ class TreeDisplayer:
         json_path = self.ask_for_json()
         json_tree = convert_json_to_dict(json_path)
         # component = self.ask_for_component()
-        os.system("clear")  # TODO use cls when using a Windows
+        os.system("cls")  # TODO use clear when using a Mac
         print(json_path + "\n")
         self.display_every_product_and_kit(json_tree, 0)
         # self.display_one_product_or_kit(json_tree)

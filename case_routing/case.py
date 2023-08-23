@@ -66,7 +66,7 @@ if __name__ == "__main__":
     example_company = createCompany()
     for i in range(1, 10):
         case = Case(i)
-        a = dispatchCase(example_company, case)
+        dispatchCase(example_company, case)
 
     example_company.directors[0].finish_case()
     example_company.backoffice_employees[0].finish_case()
@@ -74,4 +74,4 @@ if __name__ == "__main__":
     example_company.backoffice_employees[1].escalate_case()
     example_company.account_managers[0].escalate_case()
     case = Case(10)
-    a = dispatchCase(example_company, case)
+    dispatchCase(example_company, case)

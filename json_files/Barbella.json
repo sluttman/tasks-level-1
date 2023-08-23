@@ -1,0 +1,15 @@
+{
+  "name": "Barbella",
+  "price": 77.0,
+  "type": "Kit",
+  "component_0": {
+    "name": "Barbell",
+    "price": 50.0,
+    "type": "Product"
+  },
+  "component_1": {
+    "name": "Weight",
+    "price": 20.0,
+    "type": "Product"
+  }
+}

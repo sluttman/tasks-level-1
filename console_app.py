@@ -1,25 +1,31 @@
 from products import *
 from json_utils import insert_json_into_file
 from displayer import *
-
+import os
 class ConsoleApp:
     def __init__(self):
         self.dictionary_for_json_conversion = {}
 
     def run_app(self):
         print("Product App started!")
-        user_decision = self.get_user_input()
-        if user_decision == "add":
-            self.create_product_tree()
-        elif user_decision == "display":
-            self.display_product_tree()
+        running_app = True
+        while running_app:
+            user_decision = self.get_user_input()
+            if user_decision == "add":
+                self.create_product_tree()
+            elif user_decision == "display":
+                self.display_product_tree()
+            elif user_decision == "end":
+                running_app = False
+                print("Bye Bye")
+            
         
 
     def get_user_input(self):
         invalid_response = True
         while invalid_response:
-            user_decision = input("Please tell me wether you want to to add a product tree manually or display the data! (add/display)")
-            if user_decision.lower() in ["add", "display"]:
+            user_decision = input("Please tell me wether you want to add a product tree manually, display the data or end the program! (add/display/end)\n")
+            if user_decision.lower() in ["add", "display","end"]:
                 invalid_response = False
             else:
                 print("Please write either add or display")
@@ -27,17 +33,15 @@ class ConsoleApp:
         
 
     def create_product_tree(self):
-        print("creating product tree")
         creater = TreeCreater()
         tree = creater.create_manually()
         self.dictionary_for_json_conversion = self.create_dictionary(tree)
-        filename = input("How would you like to call the file that the product tree will be stored in? \n (Beware that if the name already excists the old data will be overriden!)")
+        filename = input("How would you like to call the file that the product tree will be stored in? \n (Beware that if the name already excists the old data will be overriden!)\n")
         insert_json_into_file(self.dictionary_for_json_conversion, filename)
         print(self.dictionary_for_json_conversion)
         pass
 
     def display_product_tree(self):
-        print("displaying product tree")
         displayer = TreeDisplayer()
         displayer.display() 
 
@@ -62,10 +66,16 @@ class ConsoleApp:
             dictionary.update(inserting_dict)
         
         return dictionary
+    
+
+    def validation_check(self):
+        pass
+
 
 class TreeCreater:
     def __init__(self):
         self.name_of_product = ""
+        self.validation_list = []
 
 
     def create_manually(self):
@@ -82,20 +92,26 @@ class TreeCreater:
 
             for number_child_product in range(0,number_of_child_products):
                 print(f"Child Component Number {str(number_child_product + 1)} of {self.name_of_product}!")
-                child_product = TreeCreater()                          # Here happens devide and conquer
+                child_product = TreeCreater()
+                child_product.set_list(self.validation_list)                          
                 list_of_components_of_kit.append(child_product.create_manually())
             kit = Kit(components= list_of_components_of_kit, name=self.name_of_product)
             return kit
+        
+    def set_list(self, validation_list):
+        self.validation_list = list(validation_list)
 
     def ask_for_name_of_product(self):
-        user_decision = input("What is the Name of the Product/Kit you want to create?")
-        
+        user_decision = input("What is the Name of the Product/Kit you want to create?\n")
+        if user_decision in self.validation_list:
+            raise ValueError("The tree you tried to create contains a circular reference and can't be created!")
+        self.validation_list.append(user_decision)
         return user_decision
 
     def ask_for_number_of_child_products(self):
         invalid_response = True
         while invalid_response:
-            user_decision = input(f"How many components does your {self.name_of_product} consist of? (e.g. 0 or 3)")
+            user_decision = input(f"How many components does your {self.name_of_product} consist of? (e.g. 0 or 3)\n")
             if self.is_whole_number(user_decision):
                 invalid_response = False
             else:

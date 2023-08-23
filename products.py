@@ -6,7 +6,7 @@ class superProduct:
         
     def set_price(self, price):
         price = round(price, 2)
-        print(f"The price of {self.name} is {str(price)}€.")
+        
         return price
     def get_price(self):
         return self.price

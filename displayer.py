@@ -16,8 +16,8 @@ class TreeDisplayer:
     def ask_for_json(self):
         invalid_response = True
         while invalid_response:
-            user_decision = input(f"What is the name of the json file you want to display components from? (e.g. productfamilyA.json)")
-            json_path = f"json_files/{user_decision}"
+            user_decision = input(f"What is the name of the json file you want to display components from? (e.g. productfamily.json write productfamily)\n")
+            json_path = f"json_files/{user_decision}.json"
             if os.path.exists(json_path):
                 invalid_response = False
             else:
@@ -31,23 +31,7 @@ class TreeDisplayer:
 
                 self.display_every_product_and_kit(json_tree[key], indentation + 1)
         pass
-    # def ask_for_component(self):
-    #     invalid_response = True
-    #     while invalid_response:
-    #         user_decision = input("What is the name of the component you want to display?")
-
-    #         self.component_checker(user_decision)
-    #         json_path = f"json_files/{user_decision}"
-    #         if os.path.exists(json_path):
-    #             invalid_response = False
-    #         else:
-    #             print("Please write a file name that exists")
-    #     return user_decision
     
-    # def component_checker(self, component): #True when component excists
-
-    #     pass
-
     def display_one_product_or_kit(self, json_tree, indentation):
         indent = ""
         for i in range(0,indentation):

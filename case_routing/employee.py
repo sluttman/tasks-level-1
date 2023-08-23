@@ -18,7 +18,7 @@ class Employee:
 class BackofficeEmployee(Employee):
     def __init__(self,id,company):
         super().__init__(id, company)
-        # self.access_level = 1
+
 
     def escalate_case(self):
         employees= self.company.get_employees()
@@ -32,7 +32,7 @@ class BackofficeEmployee(Employee):
 class AccountManager(Employee):
     def __init__(self, id, company):
         super().__init__(id, company)
-        # self.access_level = 2
+
     def escalate_case(self):
         employees= self.company.get_employees()
         for employee in employees:
@@ -44,4 +44,4 @@ class AccountManager(Employee):
 class Director(Employee):
     def __init__(self, id, company):
         super().__init__(id, company)
-        # self.access_level = 3
+

@@ -1,0 +1,15 @@
+{
+  "name": "Product A",
+  "price": 5.5,
+  "type": "Kit",
+  "component_0": {
+    "name": "Product B",
+    "price": 3.0,
+    "type": "Product"
+  },
+  "component_1": {
+    "name": "Product C",
+    "price": 2.0,
+    "type": "Product"
+  }
+}

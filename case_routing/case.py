@@ -3,9 +3,6 @@ from employee import *
 class Case:
     def __init__(self, id):
         self.case_id = id
-        self.case_level = 1
-    def increment_case_level(self):
-        self.case_level += 1
         
 class CaseDispatcher:
 
@@ -36,7 +33,9 @@ class CaseDispatcher:
             print(type(employee))
             example_company.add_employee(employee)
         return example_company
+    
 if __name__ == "__main__":
     example_company = CaseDispatcher()
     example_company.dispatchCase()
 
+#
